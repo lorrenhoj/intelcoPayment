@@ -6,3 +6,6 @@ def home(request):
 
 def account_info(request):
     return render(request, 'info.html', {})
+
+def method(request):
+    return render(request, 'method.html', {})
