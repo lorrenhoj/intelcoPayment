@@ -2,6 +2,27 @@
 
 {% block content %}
 
-
+<div class="container col-md-4 p-5 my-5 bg-light rounded ">
+    <form>
+      <div class="mb-3">
+        <label for="paymentMethod" class="form-label">Payment Method</label>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Payment
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Gcash</a></li>
+              <li><a class="dropdown-item" href="#">Credit Card</a></li>
+            </ul>
+          </div>
+      </div>
+        <a class="btn btn-outline-primary" href="{% url 'info' %}">
+        Back
+        </a>
+        <a class="btn btn-outline-primary" href="">
+        Next
+        </a>
+    </form>
+    </div>
 
 {% endblock %}
