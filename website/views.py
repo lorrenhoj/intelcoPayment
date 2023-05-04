@@ -13,3 +13,6 @@ def method(request):
 
 def gcash(request):
     return render(request, 'gcashpayment.html', {})
+
+def credit(request):
+    return render(request, 'credit.html', {})
