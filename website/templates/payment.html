@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <label for="payment_method">Select payment method:</label>
+  <select name="payment_method" id="payment_method">
+    <option value="credit">Credit Card</option>
+    <option value="gcash">GCash</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

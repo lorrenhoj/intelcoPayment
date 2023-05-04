@@ -8,11 +8,12 @@ def home(request):
 def account_info(request):
     return render(request, 'info.html', {})
 
-def method(request):
-    return render(request, 'method.html', {})
 
-def gcash(request):
-    return render(request, 'gcashpayment.html', {})
-
-def credit(request):
-    return render(request, 'credit.html', {})
+def payment_method(request):
+    if request.method == 'POST':
+        payment_method = request.POST.get('payment_method')
+        if payment_method == 'credit':
+            return render(request, 'credit.html')
+        elif payment_method == 'gcash':
+            return render(request, 'gcash.html')
+    return render(request, 'payment.html')
