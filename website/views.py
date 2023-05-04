@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def home(request):
@@ -9,3 +10,6 @@ def account_info(request):
 
 def method(request):
     return render(request, 'method.html', {})
+
+def gcash(request):
+    return render(request, 'gcashpayment.html', {})
