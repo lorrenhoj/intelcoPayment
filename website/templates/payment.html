@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<div class="container col-md-4 p-5 my-5 bg-light rounded ">
 <form method="POST">
   {% csrf_token %}
   <label for="payment_method">Select payment method:</label>
@@ -9,7 +10,10 @@
     <option value="credit">Credit Card</option>
     <option value="gcash">GCash</option>
   </select>
-  <button type="submit">Submit</button>
+  <br>
+  <br>
+  <button type="submit" class="btn btn-outline-primary">Submit</button>
 </form>
+</div>
 
 {% endblock %}
