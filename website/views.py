@@ -17,3 +17,6 @@ def payment_method(request):
         elif payment_method == 'gcash':
             return render(request, 'gcash.html')
     return render(request, 'payment.html')
+
+def success(request):
+    return render(request, 'success.html', {})

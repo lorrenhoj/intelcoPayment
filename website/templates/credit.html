@@ -30,11 +30,14 @@
                     <input class="form-control mb-3 pt-2 " type="password" placeholder="***">
                 </div>
             </div>
-            <div class="col-12">
-                <div class="btn btn-primary mb-3">
-                    <span class="ps-3">Pay</span>
-                    <span class="fas fa-arrow-right"></span>
-                </div>
+            <div class="d-flex justify-content-between pb-3">
+                <a class="btn btn-outline-secondary" href="{% url 'payment_method' %}">
+                Back
+                </a>
+                <a class="btn btn-outline-success" href="{% url 'success' %}">
+                Pay
+                </a>
+              </div> 
             </div>
         </div>
     </div>
