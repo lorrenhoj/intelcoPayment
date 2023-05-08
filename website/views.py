@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+import time
 
 
 def home(request):
@@ -19,4 +21,4 @@ def payment_method(request):
     return render(request, 'payment.html')
 
 def success(request):
-    return render(request, 'success.html', {})
+    return render(request, 'success.html')
