@@ -8,8 +8,15 @@
   </head>
   <body class="bg-secondary bg-gradient vh-100" style="overflow: hidden;">
     
+    {% if messages %}
 
-    {% block content %}
+      {% for message in messages %}
+      <div class="alert alert-info" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}  
+      {% block content %}
 
     {% endblock %}
 

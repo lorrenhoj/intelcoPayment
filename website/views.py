@@ -1,11 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-import time
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    # Check if logging
+    if request.method == 'POST':
+        phone = request.POST['phone']
+        account = request.POST['account']
+        # Auth
+        user = authenticate(request, phone=phone, account=account)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Is this your account?")
+            return redirect('home')
+        else:
+            messages.success(request, "Account not found")
+            return redirect('home')
+    else:
+        return render(request, 'home.html', {})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, "You Have Been Logged Out")
+    return redirect('home')
 
 def account_info(request):
     return render(request, 'info.html', {})
