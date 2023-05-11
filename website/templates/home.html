@@ -6,15 +6,19 @@
 
 {% if user.is_authenticated %}
 
+{% if records %}
+
+{% for record in records %}
+  
   <form>
     <fieldset disabled>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Customer No.</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="000512">
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ record.customer_num }}">
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Phone No.</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="51200001">
+      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{ record.phone_num }}">
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Name</label>
@@ -36,6 +40,9 @@
     </div> 
   </form>
 
+{% endfor %}
+
+{% endif %}
 
 
 {% else %}
