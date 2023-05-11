@@ -3,9 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from .models import Record
 
 
 def home(request):
+    records = Record.objects.all()
+
     # Check if logging
     if request.method == 'POST':
         username = request.POST['username']
@@ -20,7 +23,7 @@ def home(request):
             messages.success(request, "Account not found")
             return redirect('home')
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records':records})
 
 def logout_user(request):
     logout(request)
