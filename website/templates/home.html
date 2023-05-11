@@ -6,7 +6,6 @@
 
 {% if user.is_authenticated %}
 
-<div class="container col-md-4 p-5 my-5 bg-light rounded ">
   <form>
     <fieldset disabled>
     <div class="mb-3">
@@ -42,16 +41,16 @@
 {% else %}
 
 
-<form method="POST" action="{% url 'info' %}">
+<form method="POST" action="{% url 'home' %}">
   {% csrf_token %}
   <div class="mb-3">
     <label class="form-label">Enter Phone No.</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone" required>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>
   </div>
   <p class="fst-italic">or</p>
   <div class="mb-3">
     <label class="form-label">Enter Customer No.</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="account">
+    <input type="number" class="form-control" id="exampleInputPassword1" name="account" required>
   </div>
   <br>
   <div class="d-flex justify-content-between">

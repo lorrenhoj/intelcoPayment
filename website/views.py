@@ -8,10 +8,10 @@ from django.http import HttpResponseRedirect
 def home(request):
     # Check if logging
     if request.method == 'POST':
-        phone = request.POST['phone']
-        account = request.POST['account']
+        username = request.POST['username']
+        account = request.POST['account'] 
         # Auth
-        user = authenticate(request, phone=phone, account=account)
+        user = authenticate(request, username=username, password=account)
         if user is not None:
             login(request, user)
             messages.success(request, "Is this your account?")
