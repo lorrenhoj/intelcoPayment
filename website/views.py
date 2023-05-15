@@ -13,8 +13,7 @@ def home(request):
         if form.is_valid():
             phone_num = form.cleaned_data['phone_num']
             customer_num = form.cleaned_data['customer_num']
-
-            #Auth
+            #Check if phone and customer number in database
             record = Record.objects.filter(customer_num=customer_num, phone_num=phone_num).first()
             if record:
                 messages.success(request, "Is this your account?")
