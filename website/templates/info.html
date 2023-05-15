@@ -3,14 +3,17 @@
 {% block content %}
 {% csrf_token %}
 <div class="container col-md-4 p-5 my-5 bg-light rounded ">
-      <form>
-        {% csrf_token %}
-        {{ form.customer_num.label_tag }} {{ form.customer_num }}
-        {{ form.customer_num.value|default:'' }} {% comment %} Display account number value {% endcomment %}
-        <br>
-        {{ form.phone_num.label_tag }} {{ form.phone_num }}
-        {{ form.phone_num.value|default:'' }} {% comment %} Display phone number value {% endcomment %}
-      </form>
+  <form>
+    {% csrf_token %}
+    Customer Number: {{ record.customer_num }}
+    <br>
+    Phone Number: {{ record.phone_num }}
+    <br>
+    Name: {{ record.name }}
+    <br>
+    Address: {{ record.address }}
+  </form>
+  
 </div>
 
 {% endblock %}

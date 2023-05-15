@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from .models import Record
 from .forms import RecordForm
 
 
 def home(request):
+
     # Check if logging
     if request.method == 'POST':
         form = RecordForm(request.POST)
@@ -16,26 +15,27 @@ def home(request):
             customer_num = form.cleaned_data['customer_num']
 
             #Auth
-            data = Record.objects.filter(customer_num=customer_num, phone_num=phone_num)
-            if data.exists():
+            record = Record.objects.filter(customer_num=customer_num, phone_num=phone_num).first()
+            if record:
                 messages.success(request, "Is this your account?")
-                return redirect('info')
+                return redirect('info', record_id=record.id)
             else:
                 messages.success(request, "Account not found")
                 return redirect('home')
     else:
-        return render(request, 'home.html', {'form':form})
+        form = RecordForm()
+    
+    return render(request, 'home.html', {'form':form})
+
+
+def account_info(request, record_id):
+    record = Record.objects.get(id=record_id)
+    return render(request, 'info.html', {'record': record})
 
 def logout_user(request):
     logout(request)
     messages.success(request, "You Have Been Logged Out")
     return redirect('home')
-
-def account_info(request):
-    form = RecordForm(request.POST)
-    form.fields['customer_num'].widget.attrs['disabled'] = True
-    form.fields['phone_num'].widget.attrs['disabled'] = True
-    return render(request, 'info.html', {'form': form})
 
 def payment_method(request):
     if request.method == 'POST':
