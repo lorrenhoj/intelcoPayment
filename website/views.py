@@ -4,26 +4,27 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .models import Record
+from .forms import RecordForm
 
 
 def home(request):
-    records = Record.objects.all()
-
     # Check if logging
     if request.method == 'POST':
-        username = request.POST['username']
-        account = request.POST['account'] 
-        # Auth
-        user = authenticate(request, username=username, password=account)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Is this your account?")
-            return redirect('home')
-        else:
-            messages.success(request, "Account not found")
-            return redirect('home')
+        form = RecordForm(request.POST)
+        if form.is_valid():
+            phone_num = form.cleaned_data['phone_num']
+            customer_num = form.cleaned_data['customer_num']
+
+            #Auth
+            data = Record.objects.filter(customer_num=customer_num, phone_num=phone_num)
+            if data.exists():
+                messages.success(request, "Is this your account?")
+                return redirect('info')
+            else:
+                messages.success(request, "Account not found")
+                return redirect('home')
     else:
-        return render(request, 'home.html', {'records':records})
+        return render(request, 'home.html', {'form':form})
 
 def logout_user(request):
     logout(request)
@@ -31,8 +32,10 @@ def logout_user(request):
     return redirect('home')
 
 def account_info(request):
-    return render(request, 'info.html', {})
-
+    form = RecordForm(request.POST)
+    form.fields['customer_num'].widget.attrs['disabled'] = True
+    form.fields['phone_num'].widget.attrs['disabled'] = True
+    return render(request, 'info.html', {'form': form})
 
 def payment_method(request):
     if request.method == 'POST':

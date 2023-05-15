@@ -1,37 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% csrf_token %}
 <div class="container col-md-4 p-5 my-5 bg-light rounded ">
-    <form>
-      <fieldset disabled>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Customer No.</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="000512">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Phone No.</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="51200001">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Name</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Juan Dela Cruz">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Address</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Bagong Bayan, Lungsod ng Luma, New City">
-      </div>
-    </fieldset>
-    <br>
-      <div class="d-flex justify-content-between">
-        <a class="btn btn-outline-secondary" href="{% url 'logout' %}">
-        Back
-        </a>
-        <a class="btn btn-outline-secondary" href="{% url 'payment_method' %}">
-        Next
-        </a>
-      </div> 
-    </form>
+      <form>
+        {% csrf_token %}
+        {{ form.customer_num.label_tag }} {{ form.customer_num }}
+        {{ form.customer_num.value|default:'' }} {% comment %} Display account number value {% endcomment %}
+        <br>
+        {{ form.phone_num.label_tag }} {{ form.phone_num }}
+        {{ form.phone_num.value|default:'' }} {% comment %} Display phone number value {% endcomment %}
+      </form>
 </div>
 
 {% endblock %}

@@ -3,61 +3,16 @@
 {% block content %}
 
 <div class="container col-md-4 p-5 my-5 bg-light rounded ">
-
-{% if user.is_authenticated %}
-
-{% if records %}
-
-{% for record in records %}
-  
-  <form>
-    <fieldset disabled>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Customer No.</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ record.customer_num }}">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Phone No.</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{ record.phone_num }}">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Name</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Juan Dela Cruz">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Address</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Bagong Bayan, Lungsod ng Luma, New City">
-    </div>
-  </fieldset>
-  <br>
-    <div class="d-flex justify-content-between">
-      <a class="btn btn-outline-secondary" href="{% url 'logout' %}">
-      Back
-      </a>
-      <a class="btn btn-outline-secondary" href="{% url 'payment_method' %}">
-      Next
-      </a>
-    </div> 
-  </form>
-
-{% endfor %}
-
-{% endif %}
-
-
-{% else %}
-
-
 <form method="POST" action="{% url 'home' %}">
   {% csrf_token %}
   <div class="mb-3">
     <label class="form-label">Enter Phone No.</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone_num" required>
   </div>
   <p class="fst-italic">or</p>
   <div class="mb-3">
     <label class="form-label">Enter Customer No.</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="account" required>
+    <input type="number" class="form-control" id="exampleInputPassword1" name="customer_num" required>
   </div>
   <br>
   <div class="d-flex justify-content-between">
@@ -67,7 +22,7 @@
   </div> 
 </form>
 
-{% endif %}
+
 
 </div>
 
