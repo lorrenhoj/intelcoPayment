@@ -137,4 +137,4 @@ GitHub.sublime-settings
 .history
 
 # Database Profiles
-website/fixtures/
+website/fixtures/*

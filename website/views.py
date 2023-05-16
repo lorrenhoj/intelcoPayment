@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Record
 from .forms import RecordForm
@@ -30,11 +29,6 @@ def home(request):
 def account_info(request, record_id):
     record = Record.objects.get(id=record_id)
     return render(request, 'info.html', {'record': record})
-
-def logout_user(request):
-    logout(request)
-    messages.success(request, "You Have Been Logged Out")
-    return redirect('home')
 
 def payment_method(request):
     if request.method == 'POST':
