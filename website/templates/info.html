@@ -24,6 +24,11 @@
       <label class="form-label"> Address: </label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone_num" placeholder="{{ record.address }}" disabled required>
     </div>
+    <div class="mb-3">
+      <label class="form-label"> Plan: </label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone_num" placeholder="{{ record.plan }}" disabled required>
+    </div>
+    <br>
 
     <div class="d-flex justify-content-between">
       <a class="btn btn-outline-secondary" href="{% url 'home' %}">
