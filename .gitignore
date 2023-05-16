@@ -137,5 +137,4 @@ GitHub.sublime-settings
 .history
 
 # Database Profiles
-*.json
-*.csv
+fixtures/
